@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit File Data
+{% endblock %}
+
+{% block main %}
+    <div class="section">
+        <h2 class="mb-5 mt-4"> Edit File Data </h2>
+        {% for file in files %}
+            <div class="mb-5">
+                <img src="/{{ file.file_path }}" alt="{{ file.file_title }}" class="img-fluid mb-3 w-50">
+                <form action="/edited/{{ file.file_id }}" id="edit_form" enctype="multipart/form-data" method="post" class="mb-2">
+                    <div class="mb-3">
+                        <input class="form-control mx-auto w-auto" name="title" placeholder="Title" type="text" value="{{ file.file_title }}"required>
+                    </div>
+                    <div class="mb-3">
+                        <textarea name="keywords" rows="4" cols="5" placeholder="Keywords comma seperated (Max 25)" style="width:25%; height:100%;"  required>{{ file.keyword }}</textarea>
+                    </div>
+                    <div class="mb-3">
+                        <select name="category" required>
+                            <option>{{ file.file_category }}</option>
+                            {% for category in categories %}
+                            <option>
+                                {{category}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <input class="form-control mx-auto w-auto" name="price" placeholder="Price ($)" type="number" value="{{ file.file_price }}"required>
+                    </div>
+                    <button class="btn btn-primary" id="edit_save" type="submit">Save Changes</button>
+                </form>
+                <form action="/delete/{{file.file_id}}" enctype="multipart/form-data" method="post">
+                    <button class="btn btn-primary save" id="delete" type="submit">Delete File</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

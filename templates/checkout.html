@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Checkout
+{% endblock %}
+
+{% block main %}
+    <div class="section">
+        <h3 class="mb-5 mt-4"> Hurrah! You have purchased these image. Please download the files </h3>
+        <div class="row">
+            {% for file in files %}
+                <div class="col-md-4 mb-5">
+                    <img src="{{ file.file_path }}" alt="{{ file.file_title }}" class="img-fluid mb-2 w-75">
+                    <div class="mb-2"> {{ file.file_title }} </div>
+                    <div class="mb-2"> Category: {{ file.file_category }}</div>
+                    <div class="mb-2"> Size: {{ (file.file_size / (1024 * 1024)) | round(2) }} Mb </div>
+                    <div class="mb-2"> Format: {{ file.file_type }} </div>
+                    <div class="mb-2"><a class="nav-link" href="/profile/{{ file.username }}">Artist: {{ file.username }}</a></div>
+                    <form>
+                        <button id="check_download" class="btn btn-primary"><a href="/{{ file.file_path }}" class="nav-link" download> Download </a></button>
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

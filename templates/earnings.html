@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Earning
+{% endblock %}
+
+{% block main %}
+<div class="section">
+    <table>
+        <thead>
+            <tr>
+                <th class="fs-1">Total Earning</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="amount" class="fs-1">{{ earning | usd }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <form action="/withdraw" method="post">
+        <button id="withdraw_button" class="btn btn-primary fs-5" type="submit" name="withdraw" value="{{ earning }}">Withdraw</button>
+    </form>
+    <h3 id="message" class="mb-5 mt-4"> Hurrah! {{ earning | usd }} deposited to your bank account </h3>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            let button = document.querySelector('#withdraw_button');
+            let amount = document.querySelector('#amount');
+            let message = document.querySelector('#message');
+            button.addEventListener('click', function(){
+                amount.innerHTML = '$0.00';
+            });
+            if (amount.innerHTML == '$0.00')
+            {
+                button.disabled = true;
+            }
+        })
+    </script>
+</div>
+{% endblock %}

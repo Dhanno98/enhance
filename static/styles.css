@@ -1,0 +1,502 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    margin-left: 10px;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+/* Added CSS */
+.section {
+    padding-bottom: 1rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-top: 0.5rem;
+}
+
+.section:hover {
+    background-color: #f5f5f5;
+    transition: color 2s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+button, input[type="submit"] {
+    background-color: #d9edff;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 0.375rem 0.75rem;
+    text-align: center;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    vertical-align: middle;
+}
+
+input[type="text"], input[type="number"] {
+    line-height: 1.8;
+    width: 25%;
+}
+
+input[type="text"]:hover, input[type="number"]:hover {
+    background-color: #f5f5f5;
+    transition: color 2s ease-in-out, background-color 0.15s ease-in-out;
+}
+
+table {
+    background-color: transparent;
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+table th,
+table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+}
+
+tbody tr:nth-of-type(odd) {
+    background-color: rgb(179, 208, 255, 0.3)
+}
+
+#message {
+    display: none;
+}
+
+#grid {
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.custom-class {
+    width: 100px;
+    align: center;
+}
+
+#profile_picture {
+    display: none;
+}
+
+#long_email {
+    word-wrap: break-word;
+}
+
+#profile {
+    background-color: white;
+}
+
+#index_page {
+    background-color: #f5f5f5;
+    padding: 50px;
+}
+
+#menu_bar {
+    z-index: 1;
+    position: relative;
+}
+
+.bg_image {
+    background-image: url('/static/background/milky-way-2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    bottom: 60px;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#main_title {
+    color: white;
+    font-family: 'Nexa-Heavy', sans-serif;
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+}
+
+#login_button {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+}
+
+#login_button:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+}
+
+.prelogin_menu {
+    font-family: 'Nexa-Heavy', sans-serif;
+}
+
+.prelogin_menu {
+    font-family: 'Nexa-Heavy', sans-serif;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    background-color: #0C121C;
+    color: white;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    padding: 15px 0;
+    position: relative;
+    margin-top: auto;
+    bottom: 0;
+}
+
+#reg_title {
+    color: white;
+    font-family: 'Nexa-Heavy', sans-serif;
+    position: relative;
+    width: 100%;
+}
+
+#register_button {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+}
+
+#register_button:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+}
+
+#change_title {
+    color: white;
+    font-family: 'Nexa-Heavy', sans-serif;
+    position: relative;
+    width: 100%;
+}
+
+#change_button {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+}
+
+#change_button:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+}
+
+#editprof_button {
+    background-color: #E1E2E3;
+    border-color: #AFAFAF;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #5D5D5D;
+}
+
+#editprof_button:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+.edit_image {
+    background-color: #E1E2E3;
+    border-color: #AFAFAF;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #5D5D5D;
+}
+
+.edit_image:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#profile_pic {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#profile_pic:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#save_changes {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#save_changes:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#add_to_cart {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#add_to_cart:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#search_buy {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#search_buy:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#go {
+    background-color: #E1E2E3;
+    border-color: #AFAFAF;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #5D5D5D;
+}
+
+#go:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#cart_buy {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#cart_buy:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#cart_remove {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#cart_remove:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#checkout {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#checkout:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#check_download {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#check_download:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#purchase {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#purchase:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#download {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#download:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#profile_buy {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#profile_buy:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#profile_add {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#profile_add:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#upload_submit {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#upload_submit:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#withdraw_button {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#withdraw_button:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#delete {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#delete:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#edit_save {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#edit_save:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#upload {
+    background-color: #FC3441;
+    border-color: #FC3441;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}
+
+#upload:hover {
+    background-color: #DA3928;
+    border-color: #DA3928;
+    font-family: 'Nexa-Heavy', sans-serif;
+    color: #FFFFFF;
+}

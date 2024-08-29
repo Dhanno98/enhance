@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Buy
+{% endblock %}
+
+{% block main %}
+    <div class="section">
+
+        <h2 class="mb-5 mt-4"> File Info </h2>
+        <div>
+            {% if files %}
+            {% for file in files %}
+                <img src="/{{ file.watermark_path }}" alt="{{ file.file_title }}" class="img-fluid mb-2 w-75">
+                <div class="mb-2"> {{ file.file_title }} </div>
+                <div class="mb-2"> Category: {{ file.file_category }} </div>
+                <div class="mb-2"> Price: {{ file.file_price | usd }} </div>
+                <div class="mb-2"> Size: {{ ((file.file_size) / (1024 * 1024)) | round(2) }} Mb </div>
+                <div class="mb-2"> Format: {{ file.file_type }} </div>
+                <div class="mb-2"><a class="nav-link" href="/profile/{{ file.artist_name }}">Artist: {{ file.artist_name }}</a></div>
+            <form action="/pay/{{ file.file_id }}" method="post">
+                <button id="purchase" class="btn btn-primary save" type="submit"> Purchase </button>
+            </form>
+            {% endfor %}
+        </div>
+            {% else %}
+                <p>No Result</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+

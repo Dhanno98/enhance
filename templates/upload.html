@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Upload
+{% endblock %}
+
+{% block main %}
+    <div class="section">
+
+        <h2 class="mb-5 mt-4"> Upload </h2>
+
+        <form action="/upload" id="uploadForm" enctype="multipart/form-data" method="post">
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" name="file" type="file" id="fileInput" accept=".jpg, .png" required>
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" id="title" name="title" placeholder="Title" type="text" required>
+            </div>
+            <div class="mb-3">
+                <textarea name="keywords" id="keywords" rows="4" cols="5" placeholder="Keywords comma seperated (Max 50)" style="width:25%; height:100%;" required></textarea>
+            </div>
+            <div class="mb-3">
+                <select name="category" id="category" required>
+                    <option disabled selected value="">Select Category</option>
+                    {% for category in categories %}
+                    <option>
+                        {{category}}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" id="price" name="price" placeholder="Price ($)" type="number" required>
+            </div>
+            <button class="btn btn-primary" id="upload_submit" type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+
+    </script>
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+<div id="index_page">
+    <div class="row">
+
+        <div class="col-md-3 text-center" id="profile">
+            <h3 class="mb-5 mt-4">Profile Details</h3>
+            {% for data in profile %}
+                {% if data.picture_path %}
+                    <img id="profile-picture" src="{{ data.picture_path }}" alt="Profile Picture" class="img-fluid mb-2 rounded-circle" style="width: 100px; height: 100px;">
+                {% else %}
+                    <img id="profile-picture" src="static/profile/default.png" alt="Profile Picture" class="img-fluid mb-2 rounded-circle" style="width: 100px; height: 100px;">
+                {% endif %}
+                <h4>{{ data.username }}</h4>
+                <p id="long_email">{{ data.email }}</p>
+            {% endfor %}
+            <form action="/edit_profile" method="post">
+                <button class="btn btn-primary mb-5" id="editprof_button" type="submit">Edit Profile</button>
+            </form>
+        </div>
+
+        <div class="col-md-9" id="grid">
+            <h2 class="mb-5 mt-4"> My Portfolio </h2>
+            <div class="row">
+            {% if files %}
+                {% for file in files %}
+                    <div class="col-md-4 mb-5 file-item">
+                        <img src="{{ file.file_path }}" alt="{{ file.file_title }}" class="img-fluid mb-2">
+                        <div class="mb-2"> {{ file.file_title }} </div>
+                        <div class="mb-2"> Category: {{ file.file_category }} </div>
+                        <div class="mb-2"> Price: {{ file.file_price | usd }} </div>
+                        <form action="/edit/{{ file.file_id }}" method="post">
+                            <button class="btn btn-primary me-2 edit_image" type="submit">Edit</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <form id="page_buttons">
+            </form>
+
+        </div>
+        {% else %}
+            <p>No Files</p>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-primary custom-class" id="upload" type="submit"><a class="nav-link" href="/upload">Upload</a></button>
+            </div>
+        {% endif %}
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            // Items per page
+            let itemsPerPage = 30;
+            // Select all the images in the grid
+            let grid_items = document.querySelectorAll('.file-item');
+            // Total items in the grid
+            let grid_length = grid_items.length
+            console.log(grid_length);
+            // Get the total pages created
+            let pages = Math.ceil(grid_length / itemsPerPage);
+            console.log(pages);
+            // Get the parent element of a button
+            let parent = document.querySelector('#page_buttons');
+
+            // Hide all items initially
+            for (let i = 0; i < grid_length; i++)
+            {
+                grid_items[i].style.display = 'none';
+            }
+
+            // Create an empty array for storing buttons
+            let buttonArray = [];
+            for (let i = 0; i < pages; i++)
+            {
+                // Create a new button element
+                let newButton = document.createElement('button');
+                // Set the inner HTML of the button
+                newButton.innerHTML = i+1;
+                newButton.classList.add('me-2', 'mb-2');
+                // Append the button to the parent element
+                parent.appendChild(newButton);
+                buttonArray.push(newButton);
+                console.log(newButton);
+            }
+
+            // Get the number of buttons and loop over them
+            button_num = buttonArray.length;
+
+            for (let i = 0; i < button_num; i++)
+            {
+                // When a button is clicked display those specific files and hide other files
+                buttonArray[i].addEventListener('click', function(event){
+                    // Prevent the default of form submitting when a button is clicked to stop relaoding of the page
+                    event.preventDefault();
+                    // Set colors of all buttons to default
+                    for (let j = 0; j < button_num; j++)
+                    {
+                        buttonArray[j].style.backgroundColor = '#D9EDFF';
+                    }
+                    // Set the color of the button clicked to blue
+                    buttonArray[i].style.backgroundColor = "#FC3441";
+                    buttonArray[i].style.color = "#FFFFFF";
+                    // Loop over grid items to display specific items when a button is clicked
+                    for (let j = 0; j < grid_length; j++)
+                    {
+                        if ((j >= ((i+1-1) * 30)) && (j < ((i+1) * 30)))
+                        {
+                            grid_items[j].style.display = '';
+                        }
+                        else
+                        {
+                            grid_items[j].style.display = 'none';
+                        }
+                    }
+                });
+            }
+            // Show the rows inside the button 1 by default when the page is reloaded
+            buttonArray[0].click();
+        });
+    </script>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Cart
+{% endblock %}
+
+{% block main %}
+    <div class="section">
+
+        <h2 class="mb-5 mt-4"> Cart </h2>
+        <div>
+            {% if files %}
+            <ul>
+            {% for file in files %}
+                <li class="mb-5">
+                    <img src="/{{ file.watermark_path }}" alt="{{ file.file_title }}" class="img-fluid mb-2 w-25">
+                    <div class="mb-2"> {{ file.file_title }} </div>
+                    <div class="mb-2"> Category: {{ file.file_category }} </div>
+                    <div class="mb-2"> Price: {{ file.file_price | usd }} </div>
+                    <div class="mb-2"> Size: {{ ((file.file_size) / (1024 * 1024)) | round(2) }} Mb </div>
+                    <div class="mb-2"> Format: {{ file.file_type }} </div>
+                    <div class="mb-2"><a class="nav-link" href="/profile/{{ file.artist_name }}">Artist: {{ file.artist_name }}</a></div>
+                    <form action="/buy/{{ file.file_id }}" method="post">
+                        <button class="btn btn-primary me-2 mb-2" id="cart_buy" type="submit">Buy</button>
+                    </form>
+                    <form action="/remove" method="post">
+                        <input class="form-control mx-auto w-auto" name="remove_id" type="hidden" value="{{ file.file_id }}">
+                        <button class="btn btn-primary me-2" id="cart_remove" type="submit">Remove From Cart</button>
+                    </form>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
+        {% if grand_total %}
+        <div class="section text-center">
+            <div class="mb-2"> Grand Total: {{ grand_total | usd }}</div>
+            <form action="/checkout" method="post">
+                <button id="checkout" class="btn btn-primary inline-block" id= type="submit"> Checkout </button>
+            </form>
+        </div>
+        {% endif %}
+        <div>
+            {% else %}
+                <p>Cart Empty</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,175 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Analytics
+{% endblock %}
+
+{% block main %}
+<div class="section">
+    <h2 class="mb-5 mt-4"> Analytics </h2>
+    {% if sales %}
+    <div class="mb-5">
+        <script>
+            var sales = JSON.parse('{{ sales | tojson | safe}}');
+        </script>
+
+        <canvas id="salesChart"></canvas>
+
+        <script>
+            var ctx = document.getElementById('salesChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'bar', // Chart type
+                data: {
+                    labels: sales.map(sale => sale.month),
+                    datasets: [{
+                        label: 'Monthly Analytics',
+                        data: sales.map(sale => sale.total_sales),
+                        // Make the bar blue in color with 50% transparency
+                        backgroundColor: 'rgba(173, 216, 230, 0.5)'
+                    }]
+                },
+                // Give names to the axes
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true, text: 'Month-Year'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true, text: 'Total Sales ($)'
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+    </div>
+
+    <div class="mb-5">
+        <table>
+            <thead>
+                <tr>
+                    <th class="fs-3">Lifetime Earnings</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td id="amount" class="fs-1">{{ lifetime_earnings | usd }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div>
+        <h3 class="mb-5 mt-4"> Best Performing Files </h3>
+        <form id="page_buttons">
+        </form>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>File</th>
+                    <th>File-Id</th>
+                    <th>Number of Sales</th>
+                    <th>Total Earning</th>
+                </tr>
+            </thead>
+            <tbody id="rows">
+                {% for count in sales_count %}
+                <tr>
+                    <td class="text-start col-3">
+                        <img src="{{ count.file_path }}" alt="{{ count.file_title }}" class="img-fluid w-75">
+                    </td>
+                    <td class="col-3">
+                        {{ count.file_id }}
+                    </td>
+                    <td>
+                        {{ count.total_sales }}
+                    </td>
+                    <td>
+                        {{ (count.total_earnings)| usd }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                // Get the table, then get rows and then the number of rows
+                let table = document.querySelector('#rows');
+                let rows = table.rows;
+                row_length = rows.length;
+                let parent = document.querySelector('#page_buttons');
+
+                // Get the pages required
+                let pages = Math.ceil(row_length / 10);
+
+                // Hide all the rows initially
+                for (let i = 0; i < row_length; i++)
+                {
+                    rows[i].style.display = 'none';
+                }
+
+                // Create an empty array for storing buttons
+                let buttonArray = [];
+                for (let i = 0; i < pages; i++)
+                {
+                    // Create a new button element
+                    let newButton = document.createElement('button');
+                    // Set the innerHTML of the button
+                    newButton.innerHTML = i+1;
+                    newButton.classList.add('me-2');
+                    newButton.classList.add('mb-2');
+                    // Append the button to the parent element
+                    parent.appendChild(newButton);
+                    buttonArray.push(newButton);
+                }
+
+                // Get the number of buttons and loop over them
+                button_num = buttonArray.length;
+                for (let i = 0; i < button_num; i++)
+                {
+                    // When a button is clicked display those specific rows and hide other rows
+                    buttonArray[i].addEventListener('click', function(event){
+                        // Prevent the default of form submitting when a button is clicked to stop reloading of the page
+                        event.preventDefault();
+                        // Set colors of all buttons to default
+                        for (let k = 0; k < button_num; k++)
+                        {
+                            buttonArray[k].style.backgroundColor = '#D9EDFF';
+                        }
+                        // Set the color of button clicked to blue
+                        buttonArray[i].style.backgroundColor = "#FC3441";
+                        buttonArray[i].style.color = "#FFFFFF";
+                        // Loop over rows to display specific rows when a button is clicked
+                        for (let j = 0; j < row_length; j++)
+                        {
+                            if ((j >= ((i+1-1) * 10)) && (j < ((i+1) * 10)))
+                            {
+                                rows[j].style.display = '';
+                            }
+                            else
+                            {
+                                rows[j].style.display = 'none';
+                            }
+                        }
+                    })
+                }
+                // Show the rows inside the button 1 by default when the page is reloaded
+                buttonArray[0].click();
+            })
+        </script>
+    </div>
+    <div class="fs-1">
+        {% else %}
+
+
+            {{ "No Sales Yet" }}
+
+
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log In
+{% endblock %}
+
+{% block main %}
+<div class="bg_image">
+    <div class="mb-4 fs-1 fw-bold" id="main_title">
+        Sell Images, Buy Images Get Hired, Hire Others
+    </div>
+    <div class="mb-3">
+        <form action="/login" method="post" id="login-form">
+            <div class="mb-3">
+                <input autocomplete="off" autofocus class="form-control mx-auto w-auto" name="username" placeholder="Username" type="text">
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" name="password" placeholder="Password" type="password">
+            </div>
+            <button class="btn btn-primary" id="login_button" type="submit">Log In</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

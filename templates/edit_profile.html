@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Edit Profile
+{% endblock %}
+
+{% block main %}
+    <div class="section">
+        <h2 class="mb-5 mt-4"> Edit Profile </h2>
+        {% for data in profile %}
+        <h4 class="mb-3">
+            Username: {{ data.username }}
+        </h4>
+        <form action="/update" id="edit_form" enctype="multipart/form-data" method="post">
+            <div class="mb-3">
+                <button class="btn btn-primary mb-2" type="button" id="profile_pic">Change Profile Pic</button>
+                <input class="form-control mx-auto w-auto" name="picture" type="file" id="profile_picture" accept=".jpg, .png">
+            </div>
+            <div class="mb-3">
+                <input class="form-control mx-auto w-auto" name="email" placeholder="Email" type="email" value="{{ data.email }}"required>
+            </div>
+            <button class="btn btn-primary" id="save_changes" type="submit">Save Changes</button>
+        </form>
+        {% endfor %}
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function(){
+                pic_button = document.querySelector('#profile_pic');
+                form = document.querySelector('#profile_picture');
+                pic_button.addEventListener('click', function(){
+                    form.style.display = 'block';
+                });
+            })
+        </script>
+    </div>
+{% endblock %}
